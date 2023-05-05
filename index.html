@@ -1,80 +1,232 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- displays site properly based on user's device -->
 
-  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
-  
-  <title>Frontend Mentor | Time tracking dashboard</title>
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="./images/favicon-32x32.png"
+    />
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="app.js" defer></script>
 
-  <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
-  <style>
-    .attribution { font-size: 11px; text-align: center; }
-    .attribution a { color: hsl(228, 45%, 44%); }
-  </style>
-</head>
-<body>
+    <title>Frontend Mentor | Time tracking dashboard</title>
 
-  Report for
-  Jeremy Robson
+    <link rel="stylesheet" href="style.css" />
+    <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
+    <style>
+      .attribution {
+        font-size: 11px;
+        text-align: center;
+      }
+      .attribution a {
+        color: hsl(228, 45%, 44%);
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <section class="time bg-neutral-100">
+        <div class="">
+          <div class="flex rounded-100 bg-primary-100">
+            <img src="image-jeremy.png" alt="jeremy photo" />
+            <div>
+              <span class="text-neutral-250">Report for</span>
+              <h2 class="text-white">Jeremy Robson</h2>
+            </div>
+          </div>
+          <div
+            class="flex items-center justify-around bg-neutral-150 rounded-100"
+          >
+            <a href="#" class="text-neutral-200" id="daily">Daily</a>
+            <a href="#" class="text-neutral-200" id="weekly">Weekly</a>
+            <a href="#" class="text-neutral-200" id="monthly">Monthly</a>
+          </div>
+        </div>
 
-  Daily
-  Weekly
-  Monthly
+        <div class="time__container bg-primary-150 rounded-100 relative">
+          <img src="icon-work.svg" alt="" />
+          <div class="time__wrapper bg-neutral-200 rounded-100">
+            <div class="flex justify-between">
+              <span class="time__category">Work</span>
+              <img src="icon-ellipsis.svg" alt="" />
+            </div>
+            <div class="flex justify-between">
+              <span class="text-white" id="work-time"
+                >5hrs
+                <!-- daily --></span
+              >
+              <span class="text-neutral-250" id="previous-work-time"
+                >Previous - 7hrs
+                <!-- daily --></span
+              >
+            </div>
 
-  Work
-  5hrs <!-- daily -->
-  Previous - 7hrs <!-- daily -->
-  32hrs <!-- weekly -->
-  Previous - 36hrs <!-- weekly -->
-  103hrs <!-- monthly -->
-  Previous - 128hrs <!-- monthly -->
+            32hrs
+            <!-- weekly -->
+            Previous - 36hrs
+            <!-- weekly -->
+            103hrs
+            <!-- monthly -->
+            Previous - 128hrs
+            <!-- monthly -->
+          </div>
+        </div>
 
-  Play
-  1hr <!-- daily -->
-  Previous - 2hrs <!-- daily -->
-  10hrs <!-- weekly -->
-  Previous - 8hrs <!-- weekly -->
-  23hrs <!-- monthly -->
-  Previous - 29hrs <!-- monthly -->
+        <div class="time__container bg-primary-200 rounded-100 relative">
+          <img src="icon-play.svg" alt="" />
+          <div class="time__wrapper bg-neutral-200 rounded-100">
+            <div class="flex justify-between">
+              <span class="time__category">Play</span>
+              <img src="icon-ellipsis.svg" alt="" />
+            </div>
+            <div class="flex justify-between">
+              <span class="text-white" id="play-time"
+                >1hr
+                <!-- daily --></span
+              >
+              <span class="text-neutral-250" id="previous-play-time"
+                >Previous - 2hrs
+                <!-- daily --></span
+              >
+            </div>
 
-  Study
-  0hrs <!-- daily -->
-  Previous - 1hr <!-- daily -->
-  4hrs <!-- weekly -->
-  Previous - 7hrs <!-- weekly -->
-  13hrs <!-- monthly -->
-  Previous - 19hrs <!-- monthly -->
+            10hrs
+            <!-- weekly -->
+            Previous - 8hrs
+            <!-- weekly -->
+            23hrs
+            <!-- monthly -->
+            Previous - 29hrs
+            <!-- monthly -->
+          </div>
+        </div>
 
-  Exercise
-  1hr <!-- daily -->
-  Previous - 1hr <!-- daily -->
-  4hrs <!-- weekly -->
-  Previous - 5hrs <!-- weekly -->
-  11hrs <!-- monthly -->
-  Previous - 18hrs <!-- monthly -->
+        <div class="time__container bg-primary-250 rounded-100 relative">
+          <img src="icon-study.svg" alt="" />
+          <div class="time__wrapper bg-neutral-200 rounded-100">
+            <div class="flex justify-between">
+              <span class="time__category">Study</span>
+              <img src="icon-ellipsis.svg" alt="" />
+            </div>
+            <div class="flex justify-between">
+              <span class="text-white" id="study-time"
+                >0hrs
+                <!-- daily --></span
+              >
+              <span class="text-neutral-250" id="previous-study-time"
+                >Previous - 1hr
+                <!-- daily --></span
+              >
+            </div>
 
-  Social
-  1hr <!-- daily -->
-  Previous - 3hrs <!-- daily -->
-  5hrs <!-- weekly -->
-  Previous - 10hrs <!-- weekly -->
-  21hrs <!-- monthly -->
-  Previous - 23hrs <!-- monthly -->
+            4hrs
+            <!-- weekly -->
+            Previous - 7hrs
+            <!-- weekly -->
+            13hrs
+            <!-- monthly -->
+            Previous - 19hrs
+            <!-- monthly -->
+          </div>
+        </div>
 
-  Self Care
-  0hrs <!-- daily -->
-  Previous - 1hr <!-- daily -->
-  2hrs <!-- weekly -->
-  Previous - 2hrs <!-- weekly -->
-  7hrs <!-- monthly -->
-  Previous - 11hrs <!-- monthly -->
+        <div class="time__container bg-primary-300 rounded-100 relative">
+          <img src="icon-exercise.svg" alt="" />
+          <div class="time__wrapper bg-neutral-200 rounded-100">
+            <div class="flex justify-between">
+              <span class="time__category">Exercise</span>
+              <img src="icon-ellipsis.svg" alt="" />
+            </div>
+            <div class="flex justify-between">
+              <span class="text-white" id="exercise-time"
+                >1hr
+                <!-- daily --></span
+              >
+              <span class="text-neutral-250" id="previous-exercise-time"
+                >Previous - 1hr
+                <!-- daily --></span
+              >
+            </div>
+            4hrs
+            <!-- weekly -->
+            Previous - 5hrs
+            <!-- weekly -->
+            11hrs
+            <!-- monthly -->
+            Previous - 18hrs
+            <!-- monthly -->
+          </div>
+        </div>
 
-  
-  <div class="attribution">
-    Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
-    Coded by <a href="#">Your Name Here</a>.
-  </div>
-</body>
+        <div class="time__container bg-primary-350 rounded-100 relative">
+          <img src="icon-social.svg" alt="" />
+          <div class="time__wrapper bg-neutral-200 rounded-100">
+            <div class="flex justify-between">
+              <span class="time__category">Social</span>
+              <img src="icon-ellipsis.svg" alt="" />
+            </div>
+            <div class="flex justify-between">
+              <span class="text-white" id="social-time"
+                >1hr
+                <!-- daily --></span
+              >
+              <span class="text-neutral-250" id="previous-social-time"
+                >Previous - 3hrs
+                <!-- daily --></span
+              >
+            </div>
+            5hrs
+            <!-- weekly -->
+            Previous - 10hrs
+            <!-- weekly -->
+            21hrs
+            <!-- monthly -->
+            Previous - 23hrs
+            <!-- monthly -->
+          </div>
+        </div>
+
+        <div class="time__container bg-primary-400 rounded-100 relative">
+          <img src="icon-self-care.svg" alt="" />
+          <div class="time__wrapper bg-neutral-200 rounded-100">
+            <div class="flex justify-between">
+              <span class="time__category">Self-care</span>
+              <img src="icon-ellipsis.svg" alt="" />
+            </div>
+            <div class="flex justify-between">
+              <span class="text-white" id="self-care-time"
+                >0hrs
+                <!-- daily --></span
+              >
+              <span class="text-neutral-250" id="previous-self-care-time"
+                >Previous - 1hr
+                <!-- daily --></span
+              >
+            </div>
+
+            2hrs
+            <!-- weekly -->
+            Previous - 2hrs
+            <!-- weekly -->
+            7hrs
+            <!-- monthly -->
+            Previous - 11hrs
+            <!-- monthly -->
+          </div>
+        </div>
+
+        <div class="attribution">
+          Challenge by
+          <a href="https://www.frontendmentor.io?ref=challenge" target="_blank"
+            >Frontend Mentor</a
+          >. Coded by <a href="#">Your Name Here</a>.
+        </div>
+      </section>
+    </main>
+  </body>
 </html>
